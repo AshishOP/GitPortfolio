@@ -129,31 +129,94 @@ gsap.to([".hero-image-container", ".liquid-text-overlay"], {
 });
 
 
-// B. Horizontal Scroll (Vanilla JS - no GSAP)
+// B. Horizontal Scroll (Desktop: gradual, Mobile: snap-based via vertical scroll)
 const projectsContainer = document.querySelector(".projects-container");
 const workSection = document.querySelector(".work-section");
 
+// Check if we're on mobile (768px breakpoint matches CSS)
+const isMobile = () => window.innerWidth <= 768;
+
 if (projectsContainer && workSection) {
-    // Calculate max scroll distance
+    const cards = projectsContainer.querySelectorAll('.project-card');
+    const totalCards = cards.length;
+    const dots = document.querySelectorAll('.carousel-dot');
+    const scrollHelper = document.querySelector('.mobile-scroll-helper');
+    let currentMobileIndex = 0;
+    let hasScrolledMobile = false;
+
+    // Get card width including gap for mobile snap calculation
+    const getCardWidth = () => {
+        if (cards.length === 0) return 0;
+        const cardRect = cards[0].getBoundingClientRect();
+        return cardRect.width + 32; // 2rem gap = 32px
+    };
+
+    // Update the horizontal position based on scroll
     const updateHorizontalScroll = () => {
         const rect = workSection.getBoundingClientRect();
         const sectionTop = rect.top;
         const sectionHeight = rect.height - window.innerHeight;
 
-        // Only transform when section is in view and being scrolled through
-        if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
-            // Slow down the progress so horizontal scroll completes at 70% of vertical scroll
-            const rawProgress = Math.abs(sectionTop) / sectionHeight;
-            const progress = Math.min(rawProgress / 0.7, 1); // Complete horizontal scroll at 70% vertical
-            const maxScroll = projectsContainer.scrollWidth - window.innerWidth + 100;
-            projectsContainer.style.transform = `translateX(${-progress * maxScroll}px)`;
-        } else if (sectionTop > 0) {
-            // Before section - reset
-            projectsContainer.style.transform = `translateX(0px)`;
+        if (isMobile()) {
+            // MOBILE: Snap to projects based on scroll progress
+            if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
+                // Calculate which project should be visible
+                const progress = Math.abs(sectionTop) / sectionHeight;
+                // Divide into segments for each card
+                const segmentSize = 1 / totalCards;
+                const newIndex = Math.min(Math.floor(progress / segmentSize), totalCards - 1);
+
+                // Snap to the card position
+                const cardWidth = getCardWidth();
+                const translateX = newIndex * cardWidth;
+                projectsContainer.style.transform = `translateX(${-translateX}px)`;
+                projectsContainer.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+                // Update dots
+                if (newIndex !== currentMobileIndex) {
+                    currentMobileIndex = newIndex;
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === newIndex);
+                    });
+                }
+
+                // Hide scroll helper after first scroll movement
+                if (!hasScrolledMobile && scrollHelper && progress > 0.05) {
+                    hasScrolledMobile = true;
+                    scrollHelper.style.opacity = '0';
+                    scrollHelper.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        scrollHelper.style.display = 'none';
+                    }, 500);
+                }
+            } else if (sectionTop > 0) {
+                // Before section - show first card
+                projectsContainer.style.transform = `translateX(0px)`;
+                projectsContainer.style.transition = 'transform 0.4s ease';
+                currentMobileIndex = 0;
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+            } else {
+                // After section - show last card
+                const cardWidth = getCardWidth();
+                const translateX = (totalCards - 1) * cardWidth;
+                projectsContainer.style.transform = `translateX(${-translateX}px)`;
+                currentMobileIndex = totalCards - 1;
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === totalCards - 1));
+            }
         } else {
-            // After section - keep at end position
-            const maxScroll = projectsContainer.scrollWidth - window.innerWidth + 100;
-            projectsContainer.style.transform = `translateX(${-maxScroll}px)`;
+            // DESKTOP: Gradual smooth scroll
+            projectsContainer.style.transition = 'none';
+            if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
+                const rawProgress = Math.abs(sectionTop) / sectionHeight;
+                const progress = Math.min(rawProgress / 0.7, 1);
+                const maxScroll = projectsContainer.scrollWidth - window.innerWidth + 100;
+                projectsContainer.style.transform = `translateX(${-progress * maxScroll}px)`;
+            } else if (sectionTop > 0) {
+                projectsContainer.style.transform = `translateX(0px)`;
+            } else {
+                const maxScroll = projectsContainer.scrollWidth - window.innerWidth + 100;
+                projectsContainer.style.transform = `translateX(${-maxScroll}px)`;
+            }
         }
     };
 
@@ -171,6 +234,25 @@ if (projectsContainer && workSection) {
 
     // Initial call
     updateHorizontalScroll();
+
+    // Recalculate on resize
+    window.addEventListener("resize", updateHorizontalScroll);
+
+    // Allow clicking dots to scroll page to show that project
+    dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            if (!isMobile()) return;
+            const index = parseInt(dot.dataset.index, 10);
+            const sectionRect = workSection.getBoundingClientRect();
+            const sectionHeight = sectionRect.height - window.innerHeight;
+            const segmentSize = sectionHeight / totalCards;
+            const targetScroll = window.scrollY + sectionRect.top + (index * segmentSize) + 10;
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+        });
+    });
 }
 
 
