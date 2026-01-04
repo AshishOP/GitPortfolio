@@ -288,25 +288,55 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime(); // Run immediately
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - Enhanced with animations
 const menuToggle = document.querySelector('.menu-toggle');
 const navRight = document.querySelector('.nav-right');
+const navLinks = document.querySelectorAll('.nav-right .nav-link');
 
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        // Simple toggle for mobile menu visibility
-        // Ideally, you'd add a class to slide it in
-        if (navRight.style.display === 'flex') {
-            navRight.style.display = 'none';
+if (menuToggle && navRight) {
+    // Toggle menu open/close
+    const toggleMenu = () => {
+        const isOpen = navRight.classList.contains('active');
+
+        if (isOpen) {
+            // Close menu
+            navRight.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scroll
         } else {
-            navRight.style.display = 'flex';
-            navRight.style.flexDirection = 'column';
-            navRight.style.position = 'absolute';
-            navRight.style.top = '80px';
-            navRight.style.right = '20px';
-            navRight.style.background = 'var(--bg-secondary)';
-            navRight.style.padding = '20px';
-            navRight.style.border = '1px solid var(--border-color)';
+            // Open menu
+            navRight.classList.add('active');
+            menuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        }
+    };
+
+    // Toggle on hamburger click
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navRight.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close menu when clicking the contact button
+    const btnContact = navRight.querySelector('.btn-contact');
+    if (btnContact) {
+        btnContact.addEventListener('click', () => {
+            navRight.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navRight.classList.contains('active')) {
+            toggleMenu();
         }
     });
 }

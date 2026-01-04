@@ -964,10 +964,10 @@ img {
 
 
 /* ============================================
-   FOOTER
+   FOOTER - MINIMAL STYLE
    ============================================ */
 .footer {
-    padding: 5rem 3rem 2rem;
+    padding: 5rem 3rem 0;
     background: var(--bg-secondary);
 }
 
@@ -989,57 +989,25 @@ img {
     text-transform: uppercase;
 }
 
-.footer-links {
+/* Footer Bottom Bar - Minimal */
+.footer-bottom {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    border-top: 1px solid #333;
-    padding-top: 2rem;
-}
-
-.socials {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-link {
-    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.5rem 1rem;
-    border: 1px solid transparent;
-    border-radius: 50px;
-    transition: all 0.3s ease;
+    border-top: 1px solid var(--border-color);
+    padding: 1.25rem 0;
+    background: var(--bg-secondary);
 }
 
-.social-link i {
-    font-size: 1.1rem;
-    transition: transform 0.3s ease;
-}
-
-.social-link:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-}
-
-.social-link:hover i {
-    transform: scale(1.2);
-}
-
-/* Social link icons should follow theme */
-.social-link i {
-    font-size: 1.1rem;
-    transition: transform 0.3s ease;
-    color: var(--text-primary);
-}
-
-.copyright {
-    text-align: right;
+.footer-copyright,
+.footer-location {
+    font-family: var(--font-display);
     font-size: 0.8rem;
-    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 500;
 }
 
 /* Touch-friendly draggable element */
@@ -1194,17 +1162,22 @@ img {
     }
 
     .footer {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.5rem 0;
     }
 
-    .footer-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2rem;
+    .footer-bottom {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1.5rem 0;
+        margin-top: 1rem;
     }
 
-    .copyright {
-        text-align: left;
+    .footer-copyright {
+        order: 1;
+    }
+
+    .footer-location {
+        order: 2;
     }
 }
 
@@ -1450,7 +1423,61 @@ img {
         font-size: 0.8rem;
     }
 
-    /* NAV - Mobile Menu Drawer */
+    /* ============================================
+       MOBILE NAVBAR - MINIMAL & COMPACT
+       ============================================ */
+    .navbar {
+        padding: 0.75rem 1rem;
+        background: transparent;
+        mix-blend-mode: normal;
+    }
+
+    [data-theme="light"] .navbar {
+        background: transparent;
+    }
+
+    .navbar .logo {
+        font-size: 1.1rem;
+        color: var(--text-primary);
+    }
+
+    [data-theme="light"] .navbar .logo {
+        color: var(--text-primary);
+    }
+
+    /* Hamburger Menu Button - Smaller */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 10001;
+        position: relative;
+    }
+
+    .menu-toggle .bar {
+        height: 2px;
+        width: 20px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transform-origin: center;
+    }
+
+    /* Hamburger to X transformation */
+    .menu-toggle.active .bar:first-child {
+        transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:last-child {
+        transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* Full-screen Menu Overlay */
     .nav-right {
         display: none;
         position: fixed;
@@ -1458,44 +1485,137 @@ img {
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: rgba(5, 5, 5, 0.75) !important;
-        /* Lower opacity for visible blur */
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        color: var(--text-primary) !important;
+        height: 100dvh;
+        /* Dynamic viewport height for mobile */
+        background: rgba(5, 5, 5, 0.5);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 9999;
+        gap: 0;
+        z-index: 10000;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
     }
 
     [data-theme="light"] .nav-right {
-        background-color: rgba(245, 245, 245, 0.75) !important;
+        background: rgba(245, 245, 245, 0.5);
     }
 
     .nav-right.active {
         display: flex;
+        opacity: 1;
     }
 
-    .nav-right .nav-link,
-    .nav-right .btn-contact {
+    /* Menu Links - Large & Minimal */
+    .nav-right .nav-link {
         color: var(--text-primary) !important;
-        border-color: var(--text-primary) !important;
-        font-size: 1.5rem;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 8vw, 3rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        padding: 0.75rem 0;
         mix-blend-mode: normal;
-        /* Cancel out parent's difference mode */
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+        position: relative;
     }
 
-    /* Theme toggle in mobile menu - disable mix-blend and use proper colors */
+    .nav-right .nav-link::before {
+        display: none;
+        /* Remove underline on mobile */
+    }
+
+    .nav-right .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--text-primary);
+        transition: width 0.3s ease;
+    }
+
+    .nav-right .nav-link:hover::after,
+    .nav-right .nav-link:active::after {
+        width: 100%;
+    }
+
+    /* Staggered animation for links */
+    .nav-right.active .nav-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-right.active .nav-link:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-right.active .nav-link:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    /* Theme Toggle in Menu */
     .nav-right .theme-toggle {
-        border-color: var(--text-primary) !important;
+        width: 50px;
+        height: 50px;
+        border: 2px solid var(--border-color) !important;
         color: var(--text-primary) !important;
-        mix-blend-mode: normal !important;
-        /* Cancel out parent's difference mode */
         background: transparent;
+        mix-blend-mode: normal !important;
+        margin-top: 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    .nav-right.active .theme-toggle {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+    }
+
+    .nav-right .theme-toggle:hover {
+        background: var(--text-primary);
+        color: var(--bg-primary) !important;
     }
 
     .nav-right .theme-toggle i {
+        color: var(--text-primary) !important;
+        font-size: 1.1rem;
+    }
+
+    .nav-right .theme-toggle:hover i {
+        color: var(--bg-primary) !important;
+    }
+
+    /* Contact Button in Menu */
+    .nav-right .btn-contact {
+        color: var(--bg-primary) !important;
+        background: var(--text-primary);
+        border-color: var(--text-primary) !important;
+        font-size: 0.9rem;
+        padding: 1rem 2rem;
+        margin-top: 2rem;
+        mix-blend-mode: normal;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    .nav-right.active .btn-contact {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.25s;
+    }
+
+    .nav-right .btn-contact:hover {
+        background: transparent;
         color: var(--text-primary) !important;
     }
 
