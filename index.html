@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashish Shukla | Digital Experience Designer</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+</head>
+
+<body>
+
+  <div class="cursor"></div>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo magnet">Ashish<span class="dot">.</span></a>
+    </div>
+    <div class="nav-right">
+      <a href="#work" class="nav-link magnet">Work</a>
+      <a href="#about" class="nav-link magnet">About</a>
+      <button class="theme-toggle magnet" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+      </button>
+      <a href="#contact" class="btn-contact magnet">Let's Talk</a>
+    </div>
+    <div class="menu-toggle magnet">
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+
+  <div id="main">
+
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="anim-text">Full Stack Developer</span>
+          <span class="dash">—</span>
+          <span class="anim-text">UI/UX Enthusiast</span>
+        </div>
+
+        <h1 class="hero-title">
+          <div class="hero-row"><span class="reveal">CRAFTING</span></div>
+          <div class="hero-row"><span class="reveal">DIGITAL</span></div>
+          <div class="hero-row"><span class="reveal">EMOTIONS.</span></div>
+        </h1>
+
+
+
+        <div class="liquid-text-overlay">
+          <div class="cli-window-header">
+            <span class="window-dot red"></span>
+            <span class="window-dot yellow"></span>
+            <span class="window-dot green"></span>
+          </div>
+          <div class="cli-content">
+            <span class="cli-prompt">ashish@portfolio:~$ run fact.exe --liquid</span>
+            <div id="fun-fact-text">INITIALIZING...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-down">
+        <p>Scroll to explore</p>
+        <i class="fas fa-arrow-down"></i>
+      </div>
+    </section>
+
+    <div class="marquee-section">
+      <div class="marquee-inner">
+        <span>User Interface — User Experience — Frontend Architecture — Creative Development — </span>
+        <span>User Interface — User Experience — Frontend Architecture — Creative Development — </span>
+      </div>
+    </div>
+
+    <section id="about" class="philosophy">
+      <div class="container">
+        <h2 class="section-heading">The Philosophy</h2>
+        <p class="big-text reveal-text">
+          I don't just write code; I engineer <span class="highlight">human experiences</span>.
+          In a digital world full of noise, I help brands find their rhythm,
+          blending elite aesthetics with robust architecture.
+        </p>
+      </div>
+    </section>
+
+    <section id="work" class="work-section">
+      <div class="work-sticky">
+        <div class="work-header">
+          <h2 class="section-heading">Selected Works</h2>
+          <p>Designed for impact.</p>
+        </div>
+
+        <div class="projects-container">
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/ragebaithome.png" alt="Ragebait Project">
+            </div>
+            <div class="project-info">
+              <span class="project-number">01</span>
+              <h3 class="project-title">Ragebait Clothing</h3>
+              <p class="project-role">Tech Lead & Founder</p>
+              <div class="project-stack">
+                <span>Typescript</span>
+                <span>Python</span>
+                <span>PostgreSQL</span>
+                <span>Cashfree</span>
+              </div>
+              <p class="project-desc">A full-stack e-commerce platform for a clothing brand with inventory management
+                and
+                payment processing.</p>
+              <a href="https://test.ragebaitclothing.in" target="_blank" class="project-link">View Project →</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/ragebaitwaitlist.png" alt="Ragebait Waitlist">
+            </div>
+            <div class="project-info">
+              <span class="project-number">02</span>
+              <h3 class="project-title">Ragebait Waitlist</h3>
+              <p class="project-role">Full Stack Developer</p>
+              <div class="project-stack">
+                <span>Python</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>PostgreSQL</span>
+              </div>
+              <p class="project-desc">Waitlist page configured with automated thank-you emails and SMTP admin
+                notifications.</p>
+              <a href="https://ragebaitclothing.in" target="_blank" class="project-link">View Project →</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/strayhope.png" alt="StrayHope Project">
+            </div>
+            <div class="project-info">
+              <span class="project-number">03</span>
+              <h3 class="project-title">StrayHope</h3>
+              <p class="project-role">Full Stack Developer</p>
+              <div class="project-stack">
+                <span>React</span>
+                <span>SQLite</span>
+                <span>Cloudflare D1 R2</span>
+                <span>Wrangler</span>
+              </div>
+              <p class="project-desc">Adoption platform for strays featuring an admin dashboard for managing
+                registrations and emergency services.</p>
+              <span class="project-link" style="opacity: 0.5; cursor: default;">Coming Soon</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-section">
+      <div class="container">
+        <div class="skills-layout">
+          <div class="skills-left">
+            <h2 class="section-heading">The Toolkit</h2>
+            <p style="margin-top: 1rem; color: var(--text-secondary); max-width: 300px;">
+              A curated stack of technologies I've been working with for the past 1.5 years.
+            </p>
+          </div>
+          <div class="skills-right">
+
+            <!-- Category: Languages -->
+            <div class="skill-category">
+              <h3 class="skill-cat-title">Languages & Core</h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <span class="skill-name">Python</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="70%"></div>
+                    </div>
+                    <span>Intermediate</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">HTML & CSS</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="85%"></div>
+                    </div>
+                    <span>Proficient</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="75%"></div>
+                    </div>
+                    <span>Intermediate</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">TypeScript</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="50%"></div>
+                    </div>
+                    <span>Learning</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category: Tools -->
+            <div class="skill-category" style="margin-top: 6rem;">
+              <h3 class="skill-cat-title">Tools & Workflow</h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <span class="skill-name">GitHub & Actions</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="70%"></div>
+                    </div>
+                    <span>Daily Driver</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">GitHub Copilot</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="90%"></div>
+                    </div>
+                    <span>Integrated</span>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Figma</span>
+                  <div class="skill-level">
+                    <div class="skill-level-track">
+                      <div class="level-bar" data-width="65%"></div>
+                    </div>
+                    <span>Design Capable</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="footer">
+      <div class="container">
+        <div class="footer-cta touch-drag">
+          <p class="mini-head">Have an idea?</p>
+          <h2 class="huge-text magnet">LET'S BUILD<br>THE FUTURE.</h2>
+        </div>
+
+        <div class="footer-links">
+          <div class="socials">
+            <a href="https://instagram.com/icy4sh" target="_blank" rel="noopener" class="social-link magnet">
+              <i class="fab fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="https://github.com/AshishOP" target="_blank" rel="noopener" class="social-link magnet">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link magnet">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:ashishshuklacr@gmail.com" class="social-link magnet">
+              <i class="fas fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
+          <div class="copyright">
+            <p>© 2025 Ashish Shukla. All Rights Reserved.</p>
+            <p>Pune, India <span id="time"></span></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+
+  <script src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+
+  <!-- Lenis disabled - using native scroll for trackpad compatibility -->
+
+  <script src="script.js?v=56"></script>
+</body>
+
+</html>
