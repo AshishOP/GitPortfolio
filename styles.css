@@ -839,6 +839,145 @@ img {
 
 
 /* ============================================
+   EDUCATION SECTION
+   ============================================ */
+.education-section {
+    padding: 8rem 3rem;
+    background: var(--bg-primary);
+}
+
+.education-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.education-left {
+    position: sticky;
+    top: 6rem;
+}
+
+.education-card {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.education-degree h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.education-institution {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.education-year {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+}
+
+.education-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.highlight-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.highlight-item i {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.highlight-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+
+.highlight-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Education Mobile */
+@media (max-width: 768px) {
+    .education-section {
+        padding: 4rem 1.5rem;
+    }
+    
+    .education-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .education-left {
+        position: relative;
+        top: 0;
+    }
+    
+    .education-card {
+        padding: 1.5rem;
+    }
+    
+    .education-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .education-degree h3 {
+        font-size: 1.2rem;
+    }
+    
+    .highlight-item {
+        gap: 1rem;
+    }
+    
+    .highlight-item i {
+        font-size: 1.2rem;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+/* ============================================
    FOOTER
    ============================================ */
 .footer {
